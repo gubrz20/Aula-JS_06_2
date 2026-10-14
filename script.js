@@ -1,56 +1,74 @@
-const panel = document.createElement('div');
-panel.id = 'painel-controle';
-panel.style.padding = '20px';
-panel.style.border = '2px solid #333';
-panel.style.borderRadius = '8px';
-panel.style.maxWidth = '400px';
-panel.style.fontFamily = 'Arial, sans-serif';
+const panel = document.getElementById('painel-controle');
+const caixaEstado = document.getElementById('caixa-estado');
+const outputMouse = document.getElementById('output-mouse');
+const textoOriginal = 'Passe o mouse ou clique aqui';
 
-const title = document.createElement('h2');
-title.textContent = 'Painel de Controle Interativo';
+caixaEstado.addEventListener('click', () => {
+    caixaEstado.classList.toggle('ativo');
+});
 
-const button = document.createElement('button');
-button.id = 'btn-acao';
-button.textContent = 'Clique Aqui';
-button.style.padding = '10px 15px';
-button.style.cursor = 'pointer';
+caixaEstado.addEventListener('mouseenter', () => {
+    caixaEstado.textContent = 'Mouse está aqui!';
+});
 
-const input = document.createElement('input');
-input.type = 'text';
-input.id = 'campo-texto';
-input.placeholder = 'Digite algo...';
-input.style.display = 'block';
-input.style.marginTop = '10px';
-input.style.padding = '8px';
-input.style.width = '100%';
-input.style.boxSizing = 'border-box';
-
-const outputClick = document.createElement('p');
-const outputMouse = document.createElement('p');
-const outputKey = document.createElement('p');
-
-panel.appendChild(title);
-panel.appendChild(button);
-panel.appendChild(input);
-panel.appendChild(outputClick);
-panel.appendChild(outputMouse);
-panel.appendChild(outputKey);
-document.body.appendChild(panel);
-
-let totalCliques = 0;
-
-button.addEventListener('click', () => {
-  totalCliques++;
-  outputClick.textContent = `Cliques no botão: ${totalCliques}`;
+caixaEstado.addEventListener('mouseleave', () => {
+    caixaEstado.textContent = textoOriginal;
 });
 
 panel.addEventListener('mousemove', (event) => {
-  const rect = panel.getBoundingClientRect();
-  const x = Math.round(event.clientX - rect.left);
-  const y = Math.round(event.clientY - rect.top);
-  outputMouse.textContent = `Posição do cursor no painel: X: ${x}, Y: ${y}`;
+    const rect = panel.getBoundingClientRect();
+    const x = Math.round(event.clientX - rect.left);
+    const y = Math.round(event.clientY - rect.top);
+    outputMouse.textContent = `Posição do cursor no painel: X: ${x}, Y: ${y}`;
 });
 
-input.addEventListener('keydown', (event) => {
-  outputKey.textContent = `Última tecla pressionada: ${event.key}`;
+const inputTeclado = document.getElementById('input-teclado');
+const teclaPressionada = document.getElementById('tecla-pressionada');
+const listaSubmissoes = document.getElementById('lista-submissoes');
+
+inputTeclado.addEventListener('keydown', (event) => {
+    teclaPressionada.textContent = `Você pressionou: ${event.key}`;
+
+    if (event.key === 'Enter' && inputTeclado.value.trim() !== '') {
+        const item = document.createElement('li');
+        item.textContent = `Submissão: ${inputTeclado.value}`;
+        listaSubmissoes.appendChild(item);
+        alert(`Texto submetido com sucesso: "${inputTeclado.value}"`);
+        inputTeclado.value = '';
+    }
+});
+
+const valorContador = document.getElementById('valor-contador');
+const totalCliquesElement = document.getElementById('total-cliques');
+const btnIncrementar = document.getElementById('btn-incrementar');
+const btnDecrementar = document.getElementById('btn-decrementar');
+const btnAcao = document.getElementById('btn-acao');
+
+let contador = 0;
+let totalCliques = 0;
+
+function atualizarContador(novoValor) {
+    contador = novoValor;
+    valorContador.textContent = contador;
+}
+
+btnIncrementar.addEventListener('click', () => {
+    atualizarContador(contador + 1);
+});
+
+btnDecrementar.addEventListener('click', () => {
+    atualizarContador(contador - 1);
+});
+
+btnAcao.addEventListener('click', () => {
+    totalCliques++;
+    totalCliquesElement.textContent = totalCliques;
+});
+
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowUp') {
+        atualizarContador(contador + 1);
+    } else if (event.key === 'ArrowDown') {
+        atualizarContador(contador - 1);
+    }
 });

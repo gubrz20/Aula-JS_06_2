@@ -6,74 +6,132 @@
 
 body {
     font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding: 20px;
     min-height: 100vh;
-    background-color: #f4f4f9;
 }
 
-main#painel-controle {
-    background-color: #ffffff;
-    padding: 24px;
-    border: 2px solid #333333;
-    border-radius: 8px;
+.container {
     width: 100%;
-    max-width: 400px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-header h2 {
-    font-size: 1.25rem;
-    margin-bottom: 16px;
-    color: #222222;
-    text-align: center;
-}
-
-section.controles {
+    max-width: 500px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 20px;
 }
 
-button#btn-acao {
-    padding: 10px 16px;
-    background-color: #0066cc;
+header h1 {
+    text-align: center;
+    color: #1a1a1a;
+    font-size: 1.6rem;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: #2c3e50;
+}
+
+.caixa {
+    height: 100px;
+    background-color: #3498db;
     color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    margin-bottom: 12px;
+}
+
+.caixa.ativo {
+    background-color: #e74c3c;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.info {
+    font-size: 0.9rem;
+    color: #555;
+    background-color: #f8f9fa;
+    padding: 8px 10px;
+    border-radius: 4px;
+    border-left: 3px solid #3498db;
+    margin-bottom: 10px;
+}
+
+#lista-submissoes {
+    list-style: square inside;
+    color: #2c3e50;
+    font-size: 0.9rem;
+}
+
+.contador-valor {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.botoes-grupo {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.botoes-grupo button {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s ease;
+    color: #ffffff;
+    transition: opacity 0.2s ease;
 }
 
-button#btn-acao:hover {
-    background-color: #0052a3;
+#btn-incrementar {
+    background-color: #2ecc71;
 }
 
-input#campo-texto {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 0.95rem;
+#btn-decrementar {
+    background-color: #e67e22;
 }
 
-input#campo-texto:focus {
-    outline: none;
-    border-color: #0066cc;
+#btn-acao {
+    background-color: #9b59b6;
 }
 
-section.resultados p {
-    font-size: 0.9rem;
-    color: #444444;
-    margin-bottom: 8px;
-    padding: 6px 8px;
-    background-color: #f8f9fa;
-    border-radius: 4px;
-    border-left: 3px solid #0066cc;
+.botoes-grupo button:hover {
+    opacity: 0.9;
 }
 
-section.resultados p:last-child {
-    margin-bottom: 0;
+small {
+    color: #777;
+    font-size: 0.8rem;
 }

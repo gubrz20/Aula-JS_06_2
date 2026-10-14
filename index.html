@@ -3,24 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Controle Interativo</title>
+    <title>Painel Interativo Completo DOM</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main id="painel-controle">
+    <main id="painel-controle" class="container">
         <header>
-            <h2>Painel de Controle Interativo</h2>
+            <h1>Painel de Controle Interativo</h1>
         </header>
-        <section class="controles">
-            <button id="btn-acao">Clique Aqui</button>
-            <input type="text" id="campo-texto" placeholder="Digite algo...">
+
+        <section class="card">
+            <h2>1. Caixa de Mudança de Estado & Rastreamento</h2>
+            <div id="caixa-estado" class="caixa">
+                Passe o mouse ou clique aqui
+            </div>
+            <p id="output-mouse" class="info">Posiçao do cursor no painel: X: 0, Y: 0</p>
         </section>
-        <section class="resultados">
-            <p id="output-click">Cliques no botão: 0</p>
-            <p id="output-mouse">Posição do cursor no painel: X: 0, Y: 0</p>
-            <p id="output-tecla">Última tecla pressionada: nenhuma</p>
+
+        <section class="card">
+            <h2>2. Console de Teclado</h2>
+            <input type="text" id="input-teclado" placeholder="Digite algo aqui...">
+            <p id="tecla-pressionada" class="info">Voce pressionou: nenhuma tecla</p>
+            <ul id="lista-submissoes"></ul>
+        </section>
+
+        <section class="card">
+            <h2>3. Contador Dinamico & Açoes</h2>
+            <p class="contador-valor">Valor do Contador: <span id="valor-contador">0</span></p>
+            <p class="info">Total de cliques no botao de açao: <span id="total-cliques">0</span></p>
+            <div class="botoes-grupo">
+                <button id="btn-incrementar">+</button>
+                <button id="btn-decrementar">-</button>
+                <button id="btn-acao">Açao</button>
+            </div>
+            <small>Dica: Use as setas do teclado (↑ e ↓) para alterar o contador.</small>
         </section>
     </main>
+
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </body>
